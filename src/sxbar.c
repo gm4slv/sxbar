@@ -307,7 +307,7 @@ void hdl_property(XEvent *xev)
 
 void init_defaults(void)
 {
-	config.bottom_bar = True;
+	config.bottom_bar = False;
 	config.height = 19;
 	config.vertical_padding = 0;
 	config.horizontal_padding = 0;
