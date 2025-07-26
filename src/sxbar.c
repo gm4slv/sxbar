@@ -308,16 +308,16 @@ void hdl_property(XEvent *xev)
 void init_defaults(void)
 {
 	config.bottom_bar = False;
-	config.height = 19;
+	config.height = 23;
 	config.vertical_padding = 0;
 	config.horizontal_padding = 0;
 	config.text_padding = 0;
 	config.border = False;
 	config.border_width = 0;
 	config.background_colour = parse_col("#000000");
-	config.foreground_colour = parse_col("#7abccd");
+	config.foreground_colour = parse_col("#c4a000");
 	config.border_colour = parse_col("#005577");
-	config.font = strdup("terminus-18");
+	config.font = strdup("terminus-18"); 
 	init_modules();
 }
 
@@ -342,7 +342,7 @@ void init_modules(void)
 	    (Module){.name = strdup("battery"),
 	        /*     .command = "cat /sys/class/power_supply/BAT0/capacity 2>/dev/null | sed " */
 	        /*                "'s/$/%/' || echo 'N/A'",*/
-                     .command = "acpi | awk '{print $3,$4,$5}' | cut -d: -f-2 | sed s/,//g",
+                     .command = "~/bin/batt_blocks.sh",
 	             .enabled = True,
 	             .refresh_interval = 30,
 	             .last_update = 0,
@@ -375,7 +375,7 @@ void init_modules(void)
 	
 	/* clock */
 	config.modules[config.module_count++] = (Module){.name = strdup("clock"),
-	                                                 .command = "date '+%H:%M'",
+	                                                 .command = "~/bin/date_blocks.sh",
 	                                                 .enabled = True,
 	                                                 .refresh_interval = 30,
 	                                                 .last_update = 0,
@@ -383,7 +383,7 @@ void init_modules(void)
 	/* date */
 	config.modules[config.module_count++] = (Module){.name = strdup("date"),
 	                                                 .command = "date '+%Y-%m-%d'",
-	                                                 .enabled = True,
+	                                                 .enabled = False,
 	                                                 .refresh_interval = 60,
 	                                                 .last_update = 0,
 	                                                 .cached_output = NULL};
